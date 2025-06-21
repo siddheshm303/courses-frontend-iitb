@@ -1,20 +1,26 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import CourseForm from './components/CourseForm';
-import CourseList from './components/CourseList';
-import InstanceForm from './components/InstanceForm';
-import InstanceList from './components/InstanceList';
+import Courses from './pages/Courses';
+import Instances from './pages/Instances';
 
-export default function App() {
+function App() {
   return (
-    <div className='min-h-screen bg-gray-50 p-4'>
-      <h1 className='text-3xl font-bold text-center mb-6'>Course Management</h1>
+    <div>
+      <nav className='bg-gray-900 text-white px-6 py-3 flex gap-4'>
+        <a href='/courses' className='hover:underline'>
+          Courses
+        </a>
+        <a href='/instances' className='hover:underline'>
+          Instances
+        </a>
+      </nav>
+
       <Routes>
         <Route path='/' element={<Navigate to='/courses' />} />
-        <Route path='/courses' element={<CourseList />} />
-        <Route path='/courses/new' element={<CourseForm />} />
-        <Route path='/instances' element={<InstanceList />} />
-        <Route path='/instances/new' element={<InstanceForm />} />
+        <Route path='/courses' element={<Courses />} />
+        <Route path='/instances' element={<Instances />} />
       </Routes>
     </div>
   );
 }
+
+export default App;

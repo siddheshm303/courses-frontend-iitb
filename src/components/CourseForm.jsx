@@ -16,7 +16,11 @@ const CourseForm = () => {
   const fetchCourses = async () => {
     try {
       const res = await api.get('/courses');
-      setAllCourses(res.data);
+      if (Array.isArray(res.data)) {
+        setAllCourses(res.data);
+      } else {
+        setAllCourses([]);
+      }
     } catch {
       setAllCourses([]);
     }
@@ -44,10 +48,12 @@ const CourseForm = () => {
 
       if (response.status === 200) navigate('/courses');
     } catch (err) {
-      if (err.response && err.response.status === 400) {
+      if (err.response?.status === 409) {
+        setError('Course ID already exists. Please use a unique Course ID.');
+      } else if (err.response?.status === 400) {
         setError(err.response.data || 'Invalid prerequisites.');
       } else {
-        setError('Course creation failed.');
+        setError('Course creation failed. Please try again.');
       }
     }
   };
@@ -80,14 +86,15 @@ const CourseForm = () => {
         <div>
           <label className='block text-sm font-medium mb-2'>Select Prerequisites</label>
           <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-48 overflow-y-auto border border-gray-200 p-2 rounded'>
-            {allCourses.map((c) => (
-              <label key={c.courseId} className='flex items-center space-x-2 text-sm'>
-                <input type='checkbox' value={c.courseId} checked={form.prerequisites.includes(c.courseId)} onChange={() => togglePrerequisite(c.courseId)} />
-                <span>
-                  {c.courseId} - {c.title}
-                </span>
-              </label>
-            ))}
+            {Array.isArray(allCourses) &&
+              allCourses.map((c) => (
+                <label key={c.courseId} className='flex items-center space-x-2 text-sm'>
+                  <input type='checkbox' value={c.courseId} checked={form.prerequisites.includes(c.courseId)} onChange={() => togglePrerequisite(c.courseId)} />
+                  <span>
+                    {c.courseId} - {c.title}
+                  </span>
+                </label>
+              ))}
           </div>
         </div>
 
