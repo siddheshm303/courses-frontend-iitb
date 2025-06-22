@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '../lib/axiosConfig';
-import { Link } from 'react-router-dom';
 
-const CourseList = () => {
+const CourseList = ({ refreshTrigger }) => {
   const [courses, setCourses] = useState([]);
   const [error, setError] = useState('');
 
@@ -35,7 +34,7 @@ const CourseList = () => {
 
   useEffect(() => {
     fetchCourses();
-  }, []);
+  }, [refreshTrigger]);
 
   return (
     <div className='max-w-4xl mx-auto'>

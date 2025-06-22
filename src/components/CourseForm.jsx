@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import api from '../lib/axiosConfig';
 import { useNavigate } from 'react-router-dom';
 
-const CourseForm = () => {
+const CourseForm = ({ onCourseCreated }) => {
   const [form, setForm] = useState({
     title: '',
     courseId: '',
@@ -46,7 +46,14 @@ const CourseForm = () => {
         prerequisites: form.prerequisites.map((id) => ({ courseId: id })),
       });
 
-      if (response.status === 200) navigate('/courses');
+      if (response.status === 200) {
+        alert('Course created successfully!');
+        setForm({ title: '', courseId: '', description: '', prerequisites: [] });
+        fetchCourses();
+      }
+      if (onCourseCreated) {
+        onCourseCreated();
+      }
     } catch (err) {
       if (err.response?.status === 409) {
         setError('Course ID already exists. Please use a unique Course ID.');
@@ -102,8 +109,8 @@ const CourseForm = () => {
           <button type='submit' className='bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700'>
             Submit
           </button>
-          <button type='button' onClick={() => navigate('/courses')} className='bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400'>
-            Cancel
+          <button type='button' onClick={() => setForm({ title: '', courseId: '', description: '', prerequisites: [] })} className='bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400'>
+            Clear
           </button>
         </div>
       </form>
