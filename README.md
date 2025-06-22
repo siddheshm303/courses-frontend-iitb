@@ -52,7 +52,7 @@ docker-compose up --build
 ## 🧑‍💻 Author
 ### Siddhesh Vilas Mulik
 
-📧 sidd@gmail.com
+📧 siddheshm303@gmail.com
 
 🌍 Thane, Maharashtra
 
