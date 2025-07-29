@@ -32,9 +32,9 @@ npm install
 npm start
 ```
 Frontend will be available at:
-http://localhost:3000
+http://localhost:5173/
 
-⚠️ Make sure your backend (Spring Boot) is running at http://localhost:8080 or update the Axios base URL accordingly.
+⚠️ Make sure your backend (Spring Boot) is running at http://localhost:8080/api/<endpoints>.
 
 ## 🐳 Docker (Optional for Deployment)
 To build a Docker image for the frontend:
