@@ -12,7 +12,7 @@ const InstanceList = ({ refreshTrigger }) => {
   const [error, setError] = useState('');
   const [applied, setApplied] = useState(false);
 
-  const years = Array.from({ length: 11 }, (_, i) => 2020 + i);
+  const years = Array.from({ length: 11 }, (_, i) => new Date().getFullYear() + i);
 
   const handleApply = async () => {
     setApplied(true);
