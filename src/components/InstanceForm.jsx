@@ -61,7 +61,7 @@ const InstanceForm = ({ onInstanceCreated }) => {
           <label className='block text-sm font-medium'>Year</label>
           <select name='year' value={form.year} onChange={handleChange} required className='mt-1 block w-full p-2 border rounded'>
             <option value=''>-- Select Year --</option>
-            {Array.from({ length: 11 }, (_, i) => 2020 + i).map((y) => (
+            {Array.from({ length: 11 }, (_, i) => new Date().getFullYear() + i).map((y) => (
               <option key={y} value={y}>
                 {y}
               </option>
