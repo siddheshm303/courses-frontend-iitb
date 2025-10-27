@@ -1,4 +1,4 @@
-# Courses Frontend – IIT Bombay Internship
+# Course Management Frontend-Repo
 
 This is the frontend of the **Courses Management System** developed as part of the IIT Bombay Full Stack Internship Assignment. The frontend is built using **ReactJS** and communicates with a Java Spring Boot backend.
 
