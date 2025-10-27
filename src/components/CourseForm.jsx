@@ -11,6 +11,7 @@ const CourseForm = ({ onCourseCreated }) => {
   });
   const [allCourses, setAllCourses] = useState([]);
   const [error, setError] = useState('');
+  
   const navigate = useNavigate();
 
   const fetchCourses = async () => {
